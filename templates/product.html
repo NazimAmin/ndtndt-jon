@@ -1,0 +1,141 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head >
+
+  <script src="../assets/js/angular.min.js"></script>
+  <script src="../assets/js/jquery-1.11.3.min.js"></script>
+  <script src="../assets/js/app.js"></script>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foundation Template | Product</title>
+
+  <link rel="stylesheet" href="../assets/css/templates/foundation.css"/>
+  <script src="../assets/js/modernizr.js"></script>
+</head>
+<body ng-app="ndtndtApp">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+          <a href="#">
+            NDTNDT
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+  </nav>
+
+
+  <div class="row">
+    <br>
+    <div class="large-8 columns" ng-controller="ItemCtrl as item">
+      <img ng-src="{{item.product.image[0]}}">
+
+
+    </div>
+
+
+
+
+    <div class="large-4 columns"ng-controller="ItemCtrl as item" ng-controller="ItemCtrl as item">
+
+      <h4><strong><font face ="arial">{{item.product.name}}</font></strong></h4>
+      <h5><font color ="grey">by</font> <a>this guy</a></h5><br>
+      <div ng-controller="OptionCtrl">
+        <form name="myForm">
+          <label for="repeatSelect"> SIZE: </label>
+           <select name="mySelect" id="mySelect"
+      ng-options="option.name for option in data.availableOptions track by option.id"
+      ng-model="data.selectedOption">
+            <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+          </select>
+        </form>
+
+
+      </div>
+      <span ng-controller="ItemCtrl as item">
+        <label>COUNT:  {{item.product.count}}</label>
+
+
+
+        <h3 ><em>{{item.product.price | currency}}</em></h3>
+
+
+      </span>
+
+      <h5></h5>
+      <h6 class="subheader"></h6>
+      <br> 
+      <div ng-repeat = "img in item.product.image | startFrom : 1">
+        <div class="large-4 columns">
+
+          <img ng-src="{{img}}" height="200" width="150">
+
+        </div>
+      </div>
+      <br><br>  <br><br>  <br><br>
+      <a href="#" class="small button">Add to Cart</a>
+
+
+
+
+
+    </div>
+  </div>
+  <div class="row" ng-controller="ItemCtrl as item">
+    <hr/>
+    <div class="large-6 columns">
+      <h4><font color="DarkGrey">Desctiption</font></h4>
+      <p>{{item.product.description}}</p>
+      <font color="DarkGrey">SIZE: </font>
+      <strong ng-repeat="size in item.product.size">{{size.name}} </strong><br>
+      <font color="DarkGrey">COUNT: </font>
+      <strong>{{item.product.count}}</strong>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <hr>
+    <div class="large-12 columns">
+      <h4><font color = "darkgrey">You might also like:</font></h4>
+      <img src="http://placehold.it/200x150&text=[img]">
+      <img src="http://placehold.it/200x150&text=[img]">
+      <img src="http://placehold.it/200x150&text=[img]">
+      <img src="http://placehold.it/200x150&text=[img]">
+    </div>
+  </div>
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr>
+      <div class="row">
+        <div class="large-6 columns">
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script>
+  document.write('<script src=js/vendor/' +
+    ('__proto__' in {} ? 'zepto' : 'jquery') +
+    '.js><\/script>')
+</script>
+
+<script src="../assets/js/jquery.js"></script>
+<script>
+  $(document).foundation();
+</script>
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/js/templates/foundation.js"></script>
+<script>
+  $(document).foundation();
+
+  var doc = document.documentElement;
+  doc.setAttribute('data-useragent', navigator.userAgent);
+</script>
+</html>

@@ -40,18 +40,31 @@ return [];
 });
 //users
 
+app.controller('HighestBidCtrl' , ['$scope', function($scope) {
+this.users = users;
+$scope.highestBid = function(bid1, bid2){
+
+if (bid1 >bid2)
+	return bid1;
+ else if (bid2 > bid1)
+	return bid2;
+};
+}]);
+
 var users = [
 {
-	name : "This Guy",
+	name : "Guy 1",
 	location :"NY",
 	rating: 4,
+	bidPrice: 15,
 	purchased: 26,
 	sold: 23,
 	image: "images/guy.jpg"
 },{
-	name :"This Other Guy",
+	name :"Guy 2",
 	location :"LA",
 	rating:2,
+	bidPrice: 13,
 	purchased: 6,
 	sold: 2,
 	image: "images/this other guy.jpg"
@@ -62,13 +75,10 @@ var users = [
 var item =
 {
 	name: 'Boxers',
-	price: 15,
+	price: 3,
+	curentBid: Math.max(11 ,12),
 	count: 34,
-	size:[
-      {id: '1', name: 'S'},
-      {id: '2', name: 'M'},
-      {id: '3', name: 'L'}
-    ],
+	size: 'L',
     description : "cool boxers bruh",
 	image: ["../images/onlyny1.jpg","../images/onlyny2.jpg","../images/onlyny3.jpg","../images/onlyny4.jpg"]
 

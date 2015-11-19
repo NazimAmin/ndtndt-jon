@@ -1,160 +1,131 @@
 <!doctype html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
-<head >
-
-  <script src="../assets/js/angular.min.js"></script>
-  <script src="../assets/js/jquery-1.11.3.min.js"></script>
-  <script src="../assets/js/app.js"></script>
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Foundation Template | Product</title>
-
-  <link rel="stylesheet" href="../assets/css/templates/foundation.css"/>
-  <script src="../assets/js/modernizr.js"></script>
-</head>
-<body ng-app="ndtndtApp">
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <a href="#">
-            NDTNDT
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
-  </nav>
-
-
-  <div class="row">
-    <br>
-    <div class="large-8 columns" ng-controller="ItemCtrl as item">
-      <img ng-src="{{item.product.image[0]}}">
-
-
-    </div>
-
-
-
-
-    <div class="large-4 columns"ng-controller="ItemCtrl as item" ng-controller="ItemCtrl as item">
-
-      <h4><strong><font face ="arial">{{item.product.name}}</font></strong></h4>
-      <h5><font color ="grey">by</font> <a>this guy</a></h5><br>
-      <div ng-controller="OptionCtrl">
-        <!--form name="myForm">
-          <label for="repeatSelect"> SIZE: </label>
-           <select name="mySelect" id="mySelect"
-      ng-options="option.name for option in data.availableOptions track by option.id"
-      ng-model="data.selectedOption">
-            <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
-          </select>
-        </form!-->
-
-
-      </div>
-
-      <h5></h5>
-      <h6 class="subheader"></h6>
-      <br> 
-
-
-      <div ng-repeat = "img in item.product.image | startFrom : 1">
-        <div class="large-4 columns">
-
-          <img ng-src="{{img}}" height="200" width="150">
-
-        </div>
-      </div>
-      <br><br><br><br><br><br>
-      
-      <div class="large-6 columns">
-
-       <h3 ng-controller="HighestBidCtrl" ><em>
-
-         <div ng-controller="UserCtrl as user" ><label>CURRENT BID:</label>{{highestBid(user.accounts[0].bidPrice, user.accounts[1].bidPrice) | currency}}</div></em></h3>
-
-
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" >
+   <![endif]-->
+   <html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+      <head>
+         <script src="../assets/js/angular.min.js"></script>
+         <script src="../assets/js/jquery-1.11.3.min.js"></script>
+         <script src="../assets/js/app.js"></script>
+         <meta charset="utf-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <title>Foundation Template | Product</title>
+         <link rel="stylesheet" href="../assets/css/templates/foundation.css" />
+         <script src="../assets/js/modernizr.js"></script>
+      </head>
+      <body ng-app="ndtndtApp">
+         <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+               <li class="name">
+                  <h1>
+                     <a href="#">
+                     NDTNDT
+                     </a>
+                  </h1>
+               </li>
+               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
+         </nav>
+         <div class="row">
+            <br>
+            <div class="large-8 columns" ng-controller="ItemCtrl as item">
+               <img ng-src="{{item.product.image[0]}}">
+            </div>
+            <div class="large-4 columns" ng-controller="ItemCtrl as item" ng-controller="ItemCtrl as item">
+               <h4><strong><font face ="arial">{{item.product.name}}</font></strong></h4>
+               <h5><font color ="grey">by</font> <a>this guy</a></h5>
+               <br>
+               <div ng-controller="OptionCtrl">
+                  <!--form name="myForm">
+                     <label for="repeatSelect"> SIZE: </label>
+                      <select name="mySelect" id="mySelect"
+                     ng-options="option.name for option in data.availableOptions track by option.id"
+                     ng-model="data.selectedOption">
+                       <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                     </select>
+                     </form!-->
+               </div>
+               <h5></h5>
+               <h6 class="subheader"></h6>
+               <br>
+               <div ng-repeat="img in item.product.image | startFrom : 1">
+                  <div class="large-4 columns">
+                     <img ng-src="{{img}}" height="200" width="150">
+                  </div>
+               </div>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <div class="large-6 columns">
+                  <h3 ng-controller="BidCtrl">
+                     <em>
+                        <div><label>CURRENT BID:</label>{{ item.product.bidders[item.product.bidders.length-1].bidPrice | currency}}</div>
+                     </em>
+                  </h3>
+                  <br>
+                  <label><font color="GREY">DESCRIPTION</font></label>
+                  <p>{{item.product.description}}
+                     <font color="DarkGrey">SIZE: </font> {{item.product.size}}
+                     <br>
+                  </p>
+                  <br>
+                  <label ng-controller="BidCtrl as bid" ng-submit="bid.addBid(price)">
+                  <input type="text" name="bidPrice" ng-model="price" required>
+                  <button ng-click="bid.addBid(price)">BID</button>
+                  </label>
+               </div>
+            </div>
+         </div>
          <br>
-         <label><font color="GREY">DESCRIPTION</font></label>
-
-         <p>{{item.product.description}}
-
-          <font color="DarkGrey">SIZE: </font>
-
-          {{item.product.size}}<br>
-
-          <font color="DarkGrey">COUNT: </font>
-
-          {{item.product.count}}</p><br>
-
-          <a href="#" class="small button">BID</a>
-        </div>
-
-
-      </div>
-      
-    </div><br>
-
-    <div class="row" ng-controller="UserCtrl as user">
-     <h3>BIDS</h3v>
-       <table style="width:100%" ng-repeat = "account in user.accounts"  style="list-style-type:NONE">
-        <tr>
-          <td>{{account.name}}</td>
-        </tr>
-        <tr>
-          <td>{{account.bidPrice | currency}}</td>
-
-        </tr>
-      </table>
-
-
-
-
-
-    </div>
-
-    <div class="row">
-      <hr>
-      <div class="large-12 columns">
-        <h4><font color = "darkgrey">You might also like:</font></h4>
-        <img src="http://placehold.it/200x150&text=[img]">
-        <img src="http://placehold.it/200x150&text=[img]">
-        <img src="http://placehold.it/200x150&text=[img]">
-        <img src="http://placehold.it/200x150&text=[img]">
-      </div>
-    </div>
-    <footer class="row">
-      <div class="large-12 columns">
-        <hr>
-        <div class="row">
-          <div class="large-6 columns">
-
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
-
-  <script>
-    document.write('<script src=js/vendor/' +
-      ('__proto__' in {} ? 'zepto' : 'jquery') +
-      '.js><\/script>')
-  </script>
-
-  <script src="../assets/js/jquery.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-  <script src="../assets/js/jquery.js"></script>
-  <script src="../assets/js/templates/foundation.js"></script>
-  <script>
-    $(document).foundation();
-
-    var doc = document.documentElement;
-    doc.setAttribute('data-useragent', navigator.userAgent);
-  </script>
-  </html>
+         <div class="row" ng-controller="ItemCtrl as item">
+            <h3>
+            BIDS</h3v>
+            <table style="width:100%" ng-repeat = "account in item.product.bidders"  style="list-style-type:NONE">
+               <tr>
+                  <td>{{account.name}}</td>
+               </tr>
+               <tr>
+                  <td>{{account.bidPrice | currency}}</td>
+               </tr>
+            </table>
+         </div>
+         <div class="row">
+            <hr>
+            <div class="large-12 columns">
+               <h4><font color = "darkgrey">You might also like:</font></h4>
+               <img src="http://placehold.it/200x150&text=[img]">
+               <img src="http://placehold.it/200x150&text=[img]">
+               <img src="http://placehold.it/200x150&text=[img]">
+               <img src="http://placehold.it/200x150&text=[img]">
+            </div>
+         </div>
+         <footer class="row">
+            <div class="large-12 columns">
+               <hr>
+               <div class="row">
+                  <div class="large-6 columns">
+                  </div>
+               </div>
+            </div>
+         </footer>
+      </body>
+      <script>
+         document.write('<script src=js/vendor/' +
+           ('__proto__' in {} ? 'zepto' : 'jquery') +
+           '.js><\/script>')
+      </script>
+      <script src="../assets/js/jquery.js"></script>
+      <script>
+         $(document).foundation();
+      </script>
+      <script src="../assets/js/jquery.js"></script>
+      <script src="../assets/js/templates/foundation.js"></script>
+      <script>
+         $(document).foundation();
+         var doc = document.documentElement;
+         doc.setAttribute('data-useragent', navigator.userAgent);
+      </script>
+   </html>
